@@ -34,7 +34,28 @@ let problems = [
             resolve(problems);
         });
     }
+	
+	const getProblem = function() {
+		return new Promise((resolve, reject) => {
+			resolve(problems.find(problem => problem.id === id))
+		})
+	}
+
+	const addProblem = function(newProblem) {
+		return new Promise((resolve, reject) => {
+			//if the problem already exist then reject
+			if (problem.find(problem => problem.name === newProblem.name)) {
+				reject('Problem already exists');
+			} else {
+				newProblem.id = problems.length + 1;
+				problems.push(newProblem);
+				resolve(newProblem);
+			}
+		})
+	}
 
     module.exports = {
-        getProblems
+		getProblems,
+		getProblem,
+		addProblem
     }
