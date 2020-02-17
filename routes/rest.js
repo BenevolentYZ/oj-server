@@ -13,7 +13,7 @@ router.get('/problems', (req, res) => {
 //get single problem
 router.get('/problems/:id', (req, res) => {
     const id = req.params.id;
-    problemService.getProblems(+id)
+    problemService.getProblem(+id)
         .then(problem => res.json(problem));
 })
 
@@ -24,7 +24,7 @@ router.post('/problems', jsonParser, (req, res) => {
             res.json(problem);
         }, error => {
             res.status(400).send("Problem already exists.");
-        })
+        });
 })
 
 module.exports = router;
